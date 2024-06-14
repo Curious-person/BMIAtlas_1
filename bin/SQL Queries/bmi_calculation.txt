@@ -1,0 +1,8 @@
+CREATE TABLE `bmi_calculation` (
+  `calculationID` int(11) NOT NULL,
+  `bmi` double NOT NULL,
+  `height` double NOT NULL,
+  `weight` double NOT NULL,
+  `category` varchar(50) NOT NULL,
+  PRIMARY KEY (`calculationID`)
+) 

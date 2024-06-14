@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="parentContainer" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CalculatorController">
+   <children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../Resources/Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="1080.0" fitWidth="1920.0">
+         <image>
+            <Image url="@../Resources/Pictures/Calculator/TitleLeft.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="1080.0" fitWidth="1920.0">
+         <image>
+            <Image url="@../Resources/Pictures/Calculator/BodyParametersP.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="history" fitHeight="1080.0" fitWidth="1920.0" onMouseClicked="#history">
+         <image>
+            <Image url="@../Resources/Pictures/Calculator/HistoryP.png" />
+         </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+      </ImageView>
+            <ImageView fitHeight="1080.0" fitWidth="1920.0" layoutY="14.0">
+               <image>
+                  <Image url="@../Resources/Pictures/Calculator/ProfileIcon.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="106.0" layoutY="1003.0" text="User" textFill="#4d6698">
+               <font>
+                  <Font name="Arial Black" size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Label layoutX="107.0" layoutY="1027.0" text="Log out" textFill="#4d6698" underline="true">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+      <Button fx:id="calculatebtn" layoutX="1278.0" layoutY="918.0" mnemonicParsing="false" onAction="#btncalculate" prefHeight="60.0" prefWidth="323.0" styleClass="loginbutton" text="Calculate">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <Button layoutX="1062.0" layoutY="311.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="323.0" styleClass="genderbuttons" text="Male">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <Button layoutX="1494.0" layoutY="311.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="323.0" styleClass="genderbuttons" text="Female">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <TextField fx:id="heighttext" layoutX="1061.0" layoutY="452.0" prefHeight="65.0" prefWidth="757.0" promptText="cm" styleClass="textfield">
+         <font>
+            <Font name="Arial Italic" size="17.0" />
+         </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+      </TextField>
+      <Label layoutX="1061.0" layoutY="417.0" text="Height" textFill="#4d6698">
+         <font>
+            <Font name="Arial Narrow" size="28.0" />
+         </font>
+      </Label>
+      <Label layoutX="1061.0" layoutY="276.0" text="Sex" textFill="#4d6698">
+         <font>
+            <Font name="Arial Narrow" size="28.0" />
+         </font>
+      </Label>
+      <TextField fx:id="weighttext" layoutX="1062.0" layoutY="596.0" prefHeight="65.0" prefWidth="757.0" promptText="kg" styleClass="textfield">
+         <font>
+            <Font name="Arial Italic" size="17.0" />
+         </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+      </TextField>
+      <Label layoutX="1062.0" layoutY="561.0" text="Weight" textFill="#4d6698">
+         <font>
+            <Font name="Arial Narrow" size="28.0" />
+         </font>
+      </Label>
+      <TextField layoutX="1062.0" layoutY="739.0" prefHeight="65.0" prefWidth="757.0" promptText="yrs" styleClass="textfield">
+         <font>
+            <Font name="Arial Italic" size="17.0" />
+         </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+      </TextField>
+      <Label layoutX="1062.0" layoutY="704.0" text="Age" textFill="#4d6698">
+         <font>
+            <Font name="Arial Narrow" size="28.0" />
+         </font>
+      </Label>
+      <Button layoutX="1870.0" layoutY="10.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="30.0" prefWidth="30.0" text="X">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+         <styleClass>
+            <String fx:value="exitbutton1" />
+            <String fx:value="translucent" />
+         </styleClass>
+      </Button>
+      <Button layoutX="1825.0" layoutY="10.0" mnemonicParsing="false" onAction="#minimizeWindow" prefHeight="30.0" prefWidth="30.0" text="—">
+         <font>
+            <Font name="Baskerville Old Face" size="20.0" />
+         </font>
+         <styleClass>
+            <String fx:value="minbutton2" />
+            <String fx:value="translucent" />
+         </styleClass>
+      </Button>
+            <Button fx:id="historybtn" layoutX="1825.0" layoutY="113.0" mnemonicParsing="false" onAction="#loadSecond" prefHeight="49.0" prefWidth="52.0">
+               <styleClass>
+                  <String fx:value="custom-button4" />
+                  <String fx:value="translucent" />
+               </styleClass>
+            </Button>
+   </children>
+</AnchorPane>
+   </children>
+</StackPane>

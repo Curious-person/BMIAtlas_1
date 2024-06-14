@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../Resources/Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignupController">
+   <children>
+      <ImageView fitHeight="1080.0" fitWidth="1920.0">
+         <image>
+            <Image url="@../Resources/Pictures/Login/TitleRight.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="1080.0" fitWidth="1920.0">
+         <image>
+            <Image url="@../Resources/Pictures/Signup/UserSignup.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="usernameTextField" layoutX="102.0" layoutY="359.0" prefHeight="65.0" prefWidth="757.0" promptText="Username" styleClass="textfield">
+         <font>
+            <Font name="Arial Italic" size="17.0" />
+         </font>
+      </TextField>
+      <Label layoutX="102.0" layoutY="332.0" text="Username" textFill="#4d6698">
+         <font>
+            <Font name="Arial" size="21.0" />
+         </font>
+      </Label>
+      <TextField fx:id="emailTextField" layoutX="102.0" layoutY="474.0" prefHeight="65.0" prefWidth="757.0" promptText="Email" styleClass="textfield">
+         <font>
+            <Font name="Arial Italic" size="17.0" />
+         </font>
+      </TextField>
+      <Label layoutX="102.0" layoutY="447.0" text="Email" textFill="#4d6698">
+         <font>
+            <Font name="Arial" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="102.0" layoutY="564.0" text="Create Password" textFill="#4d6698">
+         <font>
+            <Font name="Arial" size="21.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="passwordTextField" layoutX="102.0" layoutY="591.0" prefHeight="65.0" prefWidth="757.0" promptText="Password" styleClass="textfield">
+         <font>
+            <Font name="Arial Italic" size="17.0" />
+         </font>
+      </PasswordField>
+      <Label layoutX="102.0" layoutY="681.0" text="Birthday" textFill="#4d6698">
+         <font>
+            <Font name="Arial" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="331.0" layoutY="819.0" text="Already have an account?" textFill="#4d6698">
+         <font>
+            <Font name="Arial" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="576.0" layoutY="819.0" onMouseClicked="#login1" text="Login" textFill="#4d6698" underline="true">
+         <font>
+            <Font name="Arial Bold" size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="signup" layoutX="318.0" layoutY="869.0" mnemonicParsing="false" onAction="#signup" prefHeight="60.0" prefWidth="323.0" styleClass="loginbutton" text="Sign Up">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
+      <Button layoutX="1870.0" layoutY="10.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="30.0" prefWidth="30.0" text="X">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+         <styleClass>
+            <String fx:value="exitbutton1" />
+            <String fx:value="translucent" />
+         </styleClass>
+      </Button>
+      <Button layoutX="1825.0" layoutY="10.0" mnemonicParsing="false" onAction="#minimizeWindow" prefHeight="30.0" prefWidth="30.0" text="—">
+         <font>
+            <Font name="Baskerville Old Face" size="20.0" />
+         </font>
+         <styleClass>
+            <String fx:value="minbutton1" />
+            <String fx:value="translucent" />
+         </styleClass>
+      </Button>
+      <DatePicker fx:id="birthdateDatePicker" layoutX="102.0" layoutY="707.0" prefHeight="65.0" prefWidth="370.0" promptText="MM/DD/YYYY">
+         <styleClass>
+            <String fx:value="arrow" />
+            <String fx:value="month-year-pane" />
+            <String fx:value="day-cell" />
+            <String fx:value="arrow" />
+            <String fx:value="day-name-cell" />
+         </styleClass>
+         <style>
+        -fx-day-cell-empty-background: #7C9AD6;
+         </style>
+</DatePicker>
+      <Label layoutX="511.0" layoutY="681.0" text="Sex" textFill="#4d6698">
+         <font>
+            <Font name="Arial" size="21.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="defaultFemaleImage" fitHeight="65.0" fitWidth="65.0" layoutX="683.0" layoutY="707.0" onMouseClicked="#toggleFemale">
+         <image>
+            <Image url="@../Resources/Pictures/Signup/Female.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="defaultMaleImage" fitHeight="65.0" fitWidth="65.0" layoutX="511.0" layoutY="707.0" onMouseClicked="#toggleMale">
+         <image>
+            <Image url="@../Resources/Pictures/Signup/Male.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="highlightedMaleImage" fitHeight="65.0" fitWidth="78.0" layoutX="511.0" layoutY="707.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../Resources/Pictures/Signup/MaleHighlighted.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="highlightedFemaleImage" fitHeight="65.0" fitWidth="78.0" layoutX="683.0" layoutY="707.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../Resources/Pictures/Signup/FemaleHighlighted.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="errorMessageLabel" layoutX="344.0" layoutY="935.0" prefHeight="25.0" prefWidth="272.0" textAlignment="CENTER" textFill="#4d6698" visible="false">
+         <font>
+            <Font name="Arial Bold Italic" size="21.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

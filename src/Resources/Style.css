@@ -1,0 +1,357 @@
+
+.textfield, .passwordfield{
+    -fx-background-color: transparent;
+    -fx-border-color: #F9FAF4;
+    -fx-border-width: 1; 
+    -fx-text-fill: #F9FAF4;
+    -fx-border-radius: 2; 
+    -fx-prompt-text-fill: #7C9AD6;
+}
+
+.loginbutton, .genderbuttons, .addtohistory, .editbutton {
+    -fx-cursor: hand; 
+    -fx-background-color: #4D6698;
+    -fx-text-fill: #F9FAF4;
+    -fx-border-radius: 2; 
+    -fx-border-width: 1; 
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-font-size: 21px;
+}
+.loginbutton:hover, .loginbutton.loginbutton:focused {
+    -fx-cursor: hand; 
+    -fx-background-color: #F9FAF4;
+    -fx-text-fill: #4D6698;
+}
+
+.genderbuttons{
+    -fx-background-color: #F9FAF4;
+    -fx-text-fill: #4D6698;
+    -fx-font-style: italic;
+}
+
+.genderbuttons:hover, .genderbuttons.genderbuttons:focused {
+    -fx-cursor: hand; 
+    -fx-background-color: #4D6698;
+    -fx-text-fill: #F9FAF4;
+}
+
+.addtohistory{
+    -fx-background-color: #A3B5DC;
+    -fx-text-fill: #F9FAF4;
+}
+
+.addtohistory:hover, .addtohistory.addtohistory:focused {
+    -fx-cursor: hand; 
+    -fx-background-color: #4D6698;
+    -fx-text-fill: #F9FAF4;
+}
+
+.editbutton{
+    -fx-background-color: #F9FAF4;
+    -fx-text-fill: #4D6698;
+    -fx-border-radius: 2; 
+    -fx-border-width: 1; 
+    -fx-border-color: #4D6698;
+}
+
+.editbutton:hover, .editbutton.editbutton:focused {
+    -fx-cursor: hand; 
+    -fx-background-color: #4D6698;
+    -fx-text-fill: #F9FAF4;
+}
+
+
+/*exit buttons*/
+.exitbutton1 {
+    -fx-cursor: hand; 
+    -fx-background-color: transparent;
+    -fx-text-fill: #4D6698;
+    -fx-border-radius: 2; 
+}
+
+.exitbutton1:hover {
+    -fx-cursor: hand; 
+    -fx-background-color: #940202;
+    -fx-text-fill: #F9FAF4;
+}
+
+.exitbutton1.exitbutton1:focused {
+    -fx-cursor: hand; 
+    -fx-background-color: #940202;
+    -fx-text-fill: #F9FAF4;
+}
+
+/*min buttons*/
+.minbutton1, .minbutton2 {
+    -fx-cursor: hand; 
+    -fx-background-color: transparent;
+    -fx-text-fill: #4D6698;
+    -fx-border-radius: 2; 
+}
+
+.minbutton1:hover, .minbutton1.minbutton1:focused  {
+    -fx-cursor: hand; 
+    -fx-background-color: #A3B5DC;
+    -fx-text-fill: #F9FAF4;
+}
+
+.minbutton2:hover, .minbutton2.minbutton2:focused  {
+    -fx-cursor: hand; 
+    -fx-background-color: #4D6698;
+    -fx-text-fill: #F9FAF4;
+}
+
+.translucent {
+    -fx-opacity: 1; 
+    -fx-cursor: hand;
+}
+
+.translucent:hover {
+    -fx-opacity: 0.7;
+    -fx-cursor: hand;
+}
+
+/*RESULTS TEXT*/
+.bmiresult, .categoryresult{
+    -fx-text-fill: #4D6698;
+    -fx-font-size: 250px;
+    -fx-font-family: "Arial Black";
+}
+
+.categoryresult{
+    -fx-font-size: 45px;
+}
+
+/* TABLE */
+.custom-table-view, .custom-table-row, .table-view .scroll-bar .track {
+    -fx-background-color: #F9FAF4;
+    -fx-text-fill: #4D6698;
+}
+
+.custom-table-view {
+    -fx-border-color: #4D6698;
+    -fx-border-width: 3px;
+    -fx-background-radius: 2px;
+    -fx-border-radius: 2px;
+    -fx-alignment: CENTER;
+}
+
+.column-header, .column1, .datecolumn {
+    -fx-background-color: #A3B5DC;
+    -fx-text-fill: #4D6698;
+    -fx-font-size: 20px;
+    -fx-font-family: "Arial Black";
+    -fx-border-color: #4D6698;
+    -fx-border-width: 0 0 3 0;
+    -fx-min-height: 75px;
+    -fx-pref-height: 75px;
+    -fx-max-height: 75px;
+    -fx-pref-width: 160px;
+}
+
+.column1 {
+    -fx-pref-width: 75px;
+}
+
+.datecolumn {
+    -fx-pref-width: 210px;
+}
+
+.custom-table-row, .table-cell {
+    -fx-font-size: 16px;
+    -fx-text-fill: #4D6698;
+    -fx-font-family: "Arial";
+    -fx-alignment: CENTER;
+}
+
+.table-row-cell {
+    -fx-min-height: 50px;
+    -fx-pref-height: 50px;
+    -fx-max-height: 50px;
+}
+
+.table-view .scroll-bar:vertical, .table-view .scroll-bar .thumb, .table-view .scroll-bar .track {
+    -fx-padding: 0;
+    -fx-pref-width: 15px;
+}
+
+.table-view .scroll-bar .thumb {
+    -fx-background-color: #A3B5DC;
+    -fx-background-radius: 0;
+}
+
+.table-view .scroll-bar:increment-button, .table-view .scroll-bar:decrement-button {
+    -fx-background-color: #4D6698;
+    -fx-shape: "M 0 0 L 2 2 L 4 0 Z";
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: #A3B5DC;
+}
+
+
+.axis-label {
+    -fx-text-fill: #4D6698;
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial";
+    -fx-stroke: #4D6698;
+    -fx-stroke-width: 2px;
+}
+
+.default-color0.chart-series-line {
+    -fx-stroke: #4D6698;
+    -fx-stroke-width: 2px;
+}
+
+.default-color0.chart-line-symbol {
+    -fx-background-color: #4D6698, white;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+
+.chart {
+    -fx-background-color: transparent;
+}
+
+.chartplotbackground {
+    -fx-background-color: transparent;
+}
+
+.chart-legend-item-symbol {
+    -fx-background-color: #4D6698;
+}
+
+.chart-horizontal-grid-lines, .chart-vertical-grid-lines {
+    -fx-stroke: #A3B5DC;
+}
+
+.chart-axis {
+    -fx-tick-label-fill: #4D6698;
+    -fx-font-size: 20px;
+    -fx-stroke: #4D6698;
+    -fx-stroke-width: 2px;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+}
+
+.anchorpane {
+    -fx-background-color: #F9FAF4; 
+}
+
+/* Animation */
+.fade-in {
+    -fx-opacity: 0;
+    -fx-translate-x: -200;
+    -fx-opacity: 1;
+    -fx-translate-x: 0;
+    -fx-transition: all 1s ease;
+}
+
+
+/* Style the date picker */
+.date-picker {
+    -fx-background-color: #A3B5DC;
+    -fx-border-color: #F9FAF4;
+    -fx-font-size: 16px; 
+    -fx-font-family: "Arial";
+}
+
+/* Style the date picker text field */
+.date-picker .text-field {
+    -fx-background-color: #A3B5DC;
+    -fx-text-fill: #4D6698;
+    -fx-prompt-text-fill: #7C9AD6;
+}
+
+/* Style the calendar cells */
+.date-picker .day-cell {
+    -fx-background-color: #F9FAF4;
+}
+
+.date-picker .arrow {
+    -fx-background-color: #4D6698;
+    -fx-text-fill: #4D6698;
+    -fx-background-insets: 0;
+    -fx-border-radius: 0;
+}
+
+.date-picker .day-cell:hover {
+    -fx-background-color: #A3B5DC;
+}
+
+.date-picker .day-cell:selected {
+    -fx-background-color: #4D6698;
+    -fx-text-fill: #F9FAF4;
+}
+
+.date-picker .today {
+    -fx-background-color: #A3B5DC;
+    -fx-text-fill: #F9FAF4;
+}
+
+/* Style the filled days */
+.date-picker .day-cell:filled {
+    -fx-text-fill: #4D6698;
+}
+
+/* Style the empty days */
+.date-picker .day-cell:empty {
+    -fx-background-color: #7C9AD6;
+    -fx-text-fill: #A3B5DC;
+}
+
+/* Style the navigation buttons */
+.date-picker .left-button,
+.date-picker .right-button {
+    -fx-background-color: #F9FAF4;
+    -fx-text-fill: #4D6698;
+
+}
+
+.date-picker-popup .month-year-pane  {
+    -fx-background-color: #F9FAF4;
+    
+}
+.day-name-cell {
+    -fx-background-color: #A3B5DC; /* Set the background color */
+    -fx-text-fill: #4D6698;
+}
+
+ 
+.radio-button .radio {
+    -fx-border-width: 1px;
+    -fx-border-color: #F9FAF4;
+    -fx-background-color:#F9FAF4;
+    -fx-background-image: null;
+    -fx-border-radius: 10px;
+    -fx-padding: 1px;
+}
+.radio-button .radio:selected {
+    -fx-background-color: #F9FAF4;
+    -fx-background-image: null;
+}
+.radio-button -radio:armed {
+    -fx-background-color:  #F9FAF4;
+    -fx-background-image: null;
+}
+.radio-button -radio:determinate {
+    -fx-background-color: #F9FAF4;
+    -fx-background-image: null;
+}
+.radio-button -radio:indeterminate {
+    -fx-background-color: #F9FAF4;
+    -fx-background-image: null;
+}
+.radio-button .dot {
+    -fx-background-radius: 10px;
+    -fx-padding: 5px;
+}
+
+.radio-button:selected .radio .dot {
+   -fx-background-radius: 10px;
+   -fx-background-color: #4D6698;
+   -fx-background-insets: 0;
+}
