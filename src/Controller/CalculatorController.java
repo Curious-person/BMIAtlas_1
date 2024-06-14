@@ -155,18 +155,18 @@ public class CalculatorController implements Initializable{
         alert.showAndWait();
     }
 
-    private void insertDataIntoDatabase(double height, double weight, double bmi, String category) {
+    private void insertDataIntoDatabase(double bmi, double height, double weight, String category) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         
         try {
             connection = Database.DBConnect();
             if (connection != null) {
-                String query = "INSERT INTO bmi_calculation (height, weight, bmi, category) VALUES (?, ?, ?, ?)";
+                String query = "INSERT INTO bmi_calculation (bmi, height, weight, category) VALUES (?, ?, ?, ?)";
                 preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setDouble(1, height);
-                preparedStatement.setDouble(2, weight);
-                preparedStatement.setDouble(3, bmi);
+                preparedStatement.setDouble(1, bmi);
+                preparedStatement.setDouble(2, height);
+                preparedStatement.setDouble(3, weight);
                 preparedStatement.setString(4, category);
                 preparedStatement.executeUpdate();
                 System.out.println("Data inserted successfully.");

@@ -223,9 +223,9 @@ public class ResultsController implements Initializable {
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 if (resultSet.next()) {
+                    double bmi = resultSet.getDouble("bmi");
                     double height = resultSet.getDouble("height");
                     double weight = resultSet.getDouble("weight");
-                    double bmi = resultSet.getDouble("bmi");
                     String category = resultSet.getString("category");
 
                     heighttext.setText(String.valueOf(height));
