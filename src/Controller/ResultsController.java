@@ -343,7 +343,7 @@ public class ResultsController implements Initializable {
                     info.setWrapText(true); 
                     results2.setText(category);
                     learnmore.setOnMouseClicked(e -> openWebsite(url));
-                    System.out.println("URL: " + url);
+                    
 
                 } catch (Exception e) {
                     e.printStackTrace();

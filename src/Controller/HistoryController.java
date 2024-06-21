@@ -53,7 +53,7 @@ public class HistoryController implements Initializable {
     private Stage stage;
 
     @FXML
-    private Button deleteButton, handleLogout;
+    private Button deleteButton, handleLogout, refreshButton;
 
     @FXML
     private ImageView back;
@@ -150,6 +150,12 @@ public class HistoryController implements Initializable {
         alert.showAndWait();
     }
 
+    @FXML
+    private void handleRefreshButton(ActionEvent event) {
+        refreshData();
+        System.out.println("Data refreshed");
+    }
+
     public void loadDataFromDatabase() {
         ObservableList<ObservableList<String>> data = FXCollections.observableArrayList();
         int currentUserID = LoginManager.getUserID();
@@ -194,6 +200,14 @@ public class HistoryController implements Initializable {
         bmiResultCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(2)));
         categoryCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(3)));
         dateAddedCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(4)));
+    }
+
+    //clear existing data in the table view and line chart
+    private void refreshData() {
+        
+        tableView.getItems().clear();
+        bmiSeries.getData().clear();
+        loadDataFromDatabase();
     }
 
     private void displayLoggedInUser() {

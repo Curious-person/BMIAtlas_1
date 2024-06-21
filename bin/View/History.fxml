@@ -123,5 +123,10 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
+      <Button fx:id="refreshbutton" layoutX="543.0" layoutY="953.0" mnemonicParsing="false" onAction="#handleRefreshButton" prefHeight="60.0" prefWidth="323.0" styleClass="addtohistory" text="Refresh">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
