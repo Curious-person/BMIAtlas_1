@@ -34,7 +34,7 @@
             <Image url="@../Resources/Pictures/Calculator/ProfileIcon.png" />
          </image>
       </ImageView>
-      <Label layoutX="106.0" layoutY="1003.0" text="User" textFill="#4d6698">
+      <Label fx:id="userdisplay" layoutX="106.0" layoutY="1003.0" text="User" textFill="#4d6698">
          <font>
             <Font name="Arial Black" size="21.0" />
          </font>
@@ -42,23 +42,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <Label layoutX="107.0" layoutY="1027.0" text="Log out" textFill="#4d6698" underline="true">
-         <font>
-            <Font name="Arial Bold" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Label>
-      <TableView fx:id="tableView" layoutX="129.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="735.0" prefWidth="1087.0" stylesheets="@../Resources/Style.css">
+      <TableView fx:id="tableView" editable="true" layoutX="129.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="735.0" prefWidth="1087.0" stylesheets="@../Resources/Style.css">
          <columns>
-            <TableColumn fx:id="heightCol" prefWidth="330.0" styleClass="column1" text="▲ ▼" />
-            <TableColumn fx:id="weightCol" prefWidth="330.0" styleClass="column-header" text="HEIGHT" />
-            <TableColumn fx:id="bmiResultCol" prefWidth="330.0" styleClass="column-header" text="WEIGHT" />
-            <TableColumn fx:id="categoryCol" prefWidth="300.0" styleClass="column-header" text="SEX" />
-            <TableColumn fx:id="dateAddedCol" prefWidth="410.0" styleClass="column-header" text="BMI" />
-            <TableColumn prefWidth="75.0" styleClass="column-header" text="CATEGORY" />
-            <TableColumn prefWidth="75.0" styleClass="datecolumn" text="DATE" />
+            <TableColumn prefWidth="330.0" styleClass="column1" text="▲ ▼" />
+            <TableColumn fx:id="heightCol" editable="true" prefWidth="330.0" styleClass="column-header" text="HEIGHT" />
+            <TableColumn fx:id="weightCol" editable="true" prefWidth="330.0" styleClass="column-header" text="WEIGHT" />
+            <TableColumn fx:id="bmiResultCol" prefWidth="410.0" styleClass="column-header" text="BMI" />
+            <TableColumn fx:id="categoryCol" prefWidth="75.0" styleClass="column-header" text="CATEGORY" />
+            <TableColumn fx:id="dateAddedCol" prefWidth="75.0" styleClass="datecolumn" text="DATE" />
          </columns>
          <styleClass>
             <String fx:value="custom-table-row" />
@@ -69,19 +60,14 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button layoutX="893.0" layoutY="953.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="323.0" styleClass="addtohistory" text="Delete">
+      <Button fx:id="deleteButton" layoutX="893.0" layoutY="953.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="60.0" prefWidth="323.0" styleClass="addtohistory" text="Delete">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Button>
-      <Button layoutX="502.0" layoutY="953.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="323.0" styleClass="editbutton" text="Edit">
-         <font>
-            <Font name="System Bold" size="21.0" />
-         </font>
-      </Button>
-      <LineChart layoutX="1260.0" layoutY="202.0" prefHeight="462.0" prefWidth="515.0">
+      <LineChart fx:id="bmiChart" layoutX="1260.0" layoutY="202.0" prefHeight="462.0" prefWidth="515.0">
         <xAxis>
-          <CategoryAxis side="BOTTOM" tickLabelFill="#4d6698">
+          <CategoryAxis label="Date" side="BOTTOM" tickLabelFill="#4d6698">
                <styleClass>
                   <String fx:value="chart-axis" />
                   <String fx:value="axis-label" />
@@ -89,7 +75,7 @@
             </CategoryAxis>
         </xAxis>
         <yAxis>
-          <NumberAxis side="LEFT" stylesheets="@../Resources/Style.css" tickLabelFill="#4d6698">
+          <NumberAxis label="BMI" side="LEFT" stylesheets="@../Resources/Style.css" tickLabelFill="#4d6698">
                <styleClass>
                   <String fx:value="chart-axis" />
                   <String fx:value="axis-label" />
@@ -133,5 +119,9 @@
             <String fx:value="translucent" />
          </styleClass>
       </Button>
+      <Button fx:id="handleLogout" layoutX="95.0" layoutY="1025.0" mnemonicParsing="false" onAction="#handleLogout" styleClass="logoutbutton" text="Log out" underline="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </AnchorPane>

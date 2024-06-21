@@ -61,7 +61,19 @@
     -fx-text-fill: #F9FAF4;
 }
 
-
+.logoutbutton, .logoutbutton1 {
+    -fx-background-color:transparent;
+    -fx-text-fill: #4D6698;
+    -fx-border-radius: 2; 
+    -fx-border-width: 1; 
+    -fx-border-color: transparent;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+.logoutbutton1{
+    -fx-text-fill: #F9FAF4;
+}
 /*exit buttons*/
 .exitbutton1 {
     -fx-cursor: hand; 
@@ -142,12 +154,12 @@
     -fx-text-fill: #4D6698;
     -fx-font-size: 20px;
     -fx-font-family: "Arial Black";
-    -fx-border-color: #4D6698;
-    -fx-border-width: 0 0 3 0;
+    /* -fx-border-color: #4D6698;
+    -fx-border-width: 0 0 3 0; */
     -fx-min-height: 75px;
     -fx-pref-height: 75px;
     -fx-max-height: 75px;
-    -fx-pref-width: 160px;
+    -fx-pref-width: 200px;
 }
 
 .column1 {
@@ -160,6 +172,7 @@
 
 .custom-table-row, .table-cell {
     -fx-font-size: 16px;
+    -fx-background-color: #F9FAF4;
     -fx-text-fill: #4D6698;
     -fx-font-family: "Arial";
     -fx-alignment: CENTER;
@@ -189,6 +202,16 @@
 .table-view .column-header-background .filler {
     -fx-background-color: #A3B5DC;
 }
+
+.table-row-cell:selected {
+    -fx-background-color: #A3B5DC;
+}
+
+.table-row-cell:selected .table-cell {
+    -fx-background-color: #A3B5DC;
+    -fx-text-fill: #F9FAF4;
+}
+
 
 
 .axis-label {
@@ -316,7 +339,7 @@
     
 }
 .day-name-cell {
-    -fx-background-color: #A3B5DC; /* Set the background color */
+    -fx-background-color: #A3B5DC;
     -fx-text-fill: #4D6698;
 }
 
@@ -354,4 +377,52 @@
    -fx-background-radius: 10px;
    -fx-background-color: #4D6698;
    -fx-background-insets: 0;
+}
+
+
+
+.dialog-pane {
+    -fx-background-color: #F9FAF4;
+    -fx-font-family: "Arial";
+    -fx-font-size: 18px;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #A3B5DC;
+    -fx-text-fill: #4D6698;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial Black";
+}
+
+.dialog-pane .content {
+    -fx-background-color: #F9FAF4; 
+    -fx-text-fill: #4D6698;
+}
+
+/* Style the buttons */
+.dialog-pane .button-bar .button {
+    -fx-background-color: #A3B5DC;
+    -fx-text-fill: #F9FAF4;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-font-size: 16px;
+}
+
+.dialog-pane .dialog-pane-header {
+    -fx-background-color: #A3B5DC;
+    -fx-text-fill: #4D6698;
+    -fx-font-weight: bold;
+}
+
+.dialog-pane .dialog-pane-header .label {
+    -fx-graphic: url('Resources/Pictures/Login/Logo.png'); 
+    -fx-padding: 0 10 0 0;
+    -fx-background-color: #A3B5DC;
+    -fx-text-fill: #4D6698;
+    -fx-font-weight: bold;
+}
+
+.dialog-content {
+    -fx-font-size: 13px;
+
 }
