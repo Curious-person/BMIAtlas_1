@@ -1,0 +1,14 @@
+CREATE TABLE bmi_history (
+    HistoryID INT PRIMARY KEY AUTO_INCREMENT,
+    CalculationID INT,
+    UserID INT,
+    height DOUBLE,
+    weight DOUBLE,
+    BMI DOUBLE,
+    CategoryID INT,
+    CategoryName VARCHAR(255),
+    Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (UserID) REFERENCES user_login(UserID),
+    FOREIGN KEY (CategoryID) REFERENCES bmi_category(CategoryID),
+    FOREIGN KEY (CalculationID) REFERENCES bmi_calculation(CalculationID)
+);

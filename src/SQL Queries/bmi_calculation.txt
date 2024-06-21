@@ -1,8 +1,10 @@
-CREATE TABLE `bmi_calculation` (
-  `calculationID` int(11) NOT NULL,
-  `bmi` double NOT NULL,
-  `height` double NOT NULL,
-  `weight` double NOT NULL,
-  `category` varchar(50) NOT NULL,
-  PRIMARY KEY (`calculationID`)
-) 
+CREATE TABLE bmi_calculation (
+    CalculationID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT,
+    Height DOUBLE NOT NULL,
+    Weight DOUBLE NOT NULL,
+    BMI DOUBLE NOT NULL,
+    CategoryID INT,
+    FOREIGN KEY (UserID) REFERENCES user_login(UserID),
+    FOREIGN KEY (CategoryID) REFERENCES bmi_category(CategoryID)
+);

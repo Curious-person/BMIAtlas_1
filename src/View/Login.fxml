@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="parentContainer" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
+<StackPane fx:id="parentContainer" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginController">
    <children>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../Resources/Style.css">
    <children>
@@ -52,7 +52,7 @@
             <Font name="Arial" size="21.0" />
          </font>
       </Label>
-      <Label fx:id="errorMessageLabel" layoutX="359.0" layoutY="631.0" text="*Wrong Email or Password" textAlignment="CENTER" textFill="#4d6698" visible="false">
+      <Label fx:id="errorMessageLabel" layoutX="305.0" layoutY="631.0" text="*Invalid username/email or password." textAlignment="CENTER" textFill="#4d6698" visible="false">
          <font>
             <Font name="Arial Bold Italic" size="21.0" />
          </font>

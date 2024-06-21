@@ -1,0 +1,10 @@
+CREATE TABLE bmi_category (
+    CategoryID INT PRIMARY KEY,
+    CategoryName VARCHAR(50) NOT NULL
+);
+
+INSERT INTO bmi_category (CategoryID, CategoryName) VALUES
+(1, 'Underweight'),
+(2, 'Normal'),
+(3, 'Overweight'),
+(4, 'Obese');
