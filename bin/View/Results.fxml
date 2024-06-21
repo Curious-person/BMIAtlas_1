@@ -35,7 +35,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="1080.0" fitWidth="1920.0">
+      <ImageView fx:id="learnmore" fitHeight="1080.0" fitWidth="1920.0">
          <image>
             <Image url="@../Resources/Pictures/Results/LearnMore.png" />
          </image>

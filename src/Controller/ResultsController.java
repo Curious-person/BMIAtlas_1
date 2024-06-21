@@ -47,7 +47,7 @@ public class ResultsController implements Initializable {
     private StackPane parentContainer;
 
     @FXML
-    private ImageView history;
+    private ImageView history, learnmore;
 
     @FXML
     private double height, weight;
@@ -66,6 +66,16 @@ public class ResultsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         loadDataFromDatabase();
         displayLoggedInUser();
+
+        learnmore.setOnMouseClicked(e -> {
+            String category = results.getText().trim();
+            String url = getURLForCategory(category);
+            if (url != null) {
+                openWebsite(url);
+            } else {
+                showAlert("Error", "No URL found for this category.");
+            }
+        });
     }
 
     @FXML
@@ -191,6 +201,7 @@ public class ResultsController implements Initializable {
 
             String category = bmiCategory.getCategory();
             String description = bmiCategory.getDescription();
+            String url = bmiCategory.getUrl();
 
 
             int userID = LoginManager.getUserID();
@@ -233,6 +244,8 @@ public class ResultsController implements Initializable {
                         results.setText(category);
                         info.setText(description);
                         results2.setText(category);
+                        learnmore.setOnMouseClicked(e -> openWebsite(url));
+                        System.out.println("URL: " + url);
                     });
                 } else {
                     showAlert("Error", "Failed to connect to the database.");
@@ -268,22 +281,27 @@ public class ResultsController implements Initializable {
     private BMICategory calculateCategory(double result) {
         String category;
         String description;
+        String url;
     
         if (result < 18.5) {
             category = "Underweight";
             description = "You are below the normal weight range. It's important to eat a balanced diet.";
+            url = "https://www.medicalnewstoday.com/articles/321612";
         } else if (result < 25.0) {
             category = "Normal weight";
             description = "You are within the normal weight range. Keep up the good work!";
+            url = "https://mana.md/what-is-a-healthy-weight/";
         } else if (result < 30.0) {
             category = "Overweight";
             description = "You are above the normal weight range. Consider a healthy diet and regular exercise.";
+            url = "https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight";
         } else {
             category = "Obese";
             description = "You are significantly above the normal weight range. It's advisable to consult with a healthcare provider.";
+            url = "https://www.who.int/health-topics/obesity#:~:text=Overweight%20and%20obesity%20are%20defined,and%20over%2030%20is%20obese.";
         }
     
-        return new BMICategory(category, description);
+        return new BMICategory(category, description, url);
     }
 
 
@@ -312,6 +330,7 @@ public class ResultsController implements Initializable {
 
                 String category = getCategoryName(categoryID);
                 String description = getCategoryDescription(category);
+                String url = getURLForCategory(category);
 
                 Platform.runLater(() -> {
                 try { 
@@ -323,6 +342,9 @@ public class ResultsController implements Initializable {
                     info.setText(description);
                     info.setWrapText(true); 
                     results2.setText(category);
+                    learnmore.setOnMouseClicked(e -> openWebsite(url));
+                    System.out.println("URL: " + url);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     System.out.println("Error setting description: " + e.getMessage());
@@ -400,13 +422,30 @@ public class ResultsController implements Initializable {
             }
         }
 
+        private String getURLForCategory(String category) {
+            switch (category) {
+                case "Underweight":
+                    return "https://www.medicalnewstoday.com/articles/321612";
+                case "Normal":
+                    return "https://mana.md/what-is-a-healthy-weight/";
+                case "Overweight":
+                    return "https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight";
+                case "Obese":
+                    return "https://www.who.int/health-topics/obesity#:~:text=Overweight%20and%20obesity%20are%20defined,and%20over%2030%20is%20obese.";
+                default:
+                    return null;
+            }
+        }
+
     public class BMICategory {
         private String category;
         private String description;
+        private String url;
     
-        public BMICategory(String category, String description) {
+        public BMICategory(String category, String description, String url) {
             this.category = category;
             this.description = description;
+            this.url = url;
         }
     
         public String getCategory() {
@@ -416,7 +455,22 @@ public class ResultsController implements Initializable {
         public String getDescription() {
             return description;
         }
+
+        public String getUrl() {
+            return url;
+        }
     }
+
+    @FXML
+    private void openWebsite(String url) {
+    try {
+        System.out.println("Attempting to open url: " + url);
+        java.awt.Desktop.getDesktop().browse(new java.net.URI(url));
+    } catch (Exception e) {
+        showAlert("Error", "Failed to open the website.");
+        e.printStackTrace();
+    }
+}
 
     
 }
