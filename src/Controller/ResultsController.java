@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import models.Database;
@@ -34,7 +35,7 @@ public class ResultsController implements Initializable {
     private TextField heighttext, weighttext;
 
     @FXML
-    private Label calculation, calculation1, results, results2, userdisplay;
+    private Label calculation, calculation1, results, results2, userdisplay, info;
 
     @FXML
     private Button addtohistory, retrybtn;
@@ -185,7 +186,12 @@ public class ResultsController implements Initializable {
             }
 
             double result = calculateResult(height, weight);
+            BMICategory bmiCategory = calculateCategory(result);
             int categoryID = determineCategoryID(result);
+
+            String category = bmiCategory.getCategory();
+            String description = bmiCategory.getDescription();
+
 
             int userID = LoginManager.getUserID();
 
@@ -220,6 +226,14 @@ public class ResultsController implements Initializable {
 
                     // Update UI
                     loadDataFromDatabase();
+
+                    Platform.runLater(() -> {
+                        calculation.setText(String.valueOf(result));
+                        calculation1.setText(String.valueOf(result));
+                        results.setText(category);
+                        info.setText(description);
+                        results2.setText(category);
+                    });
                 } else {
                     showAlert("Error", "Failed to connect to the database.");
                 }
@@ -250,6 +264,29 @@ public class ResultsController implements Initializable {
         return Math.round((weight) / (heightInMeters * heightInMeters) * 10.0) / 10.0;
     }
 
+    //BMI Category
+    private BMICategory calculateCategory(double result) {
+        String category;
+        String description;
+    
+        if (result < 18.5) {
+            category = "Underweight";
+            description = "You are below the normal weight range. It's important to eat a balanced diet.";
+        } else if (result < 25.0) {
+            category = "Normal weight";
+            description = "You are within the normal weight range. Keep up the good work!";
+        } else if (result < 30.0) {
+            category = "Overweight";
+            description = "You are above the normal weight range. Consider a healthy diet and regular exercise.";
+        } else {
+            category = "Obese";
+            description = "You are significantly above the normal weight range. It's advisable to consult with a healthcare provider.";
+        }
+    
+        return new BMICategory(category, description);
+    }
+
+
     private int determineCategoryID(double bmi) {
         if (bmi < 18.5) {
             return 1; // Underweight
@@ -274,14 +311,22 @@ public class ResultsController implements Initializable {
                 int categoryID = resultSet.getInt("CategoryID");
 
                 String category = getCategoryName(categoryID);
+                String description = getCategoryDescription(category);
 
                 Platform.runLater(() -> {
+                try { 
                     heighttext.setText(String.valueOf(height));
                     weighttext.setText(String.valueOf(weight));
                     calculation.setText(String.valueOf(bmi));
                     calculation1.setText(String.valueOf(bmi));
-                    results.setText(category);
+                    results.setText(category);                 
+                    info.setText(description);
+                    info.setWrapText(true); 
                     results2.setText(category);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("Error setting description: " + e.getMessage());
+                 }
                 });
             } else {
                 System.out.println("No data found in bmi_calculation table.");
@@ -316,6 +361,7 @@ public class ResultsController implements Initializable {
             e.printStackTrace();
         }
     }
+    
 
     private String getCategoryName(int categoryID) {
         String categoryName = "Unknown";
@@ -336,4 +382,41 @@ public class ResultsController implements Initializable {
 
         return categoryName;
     }
+
+        //Method to add the category description to the results
+        private String getCategoryDescription(String category) {
+            category = category.trim();
+            switch (category) {
+                case "Underweight":
+                    return "You are below the normal weight range. It's important to eat a balanced diet.";
+                case "Normal":
+                    return "You are within the normal weight range. Keep up the good work!";
+                case "Overweight":
+                    return "You are above the normal weight range. Consider a healthy diet and regular exercise.";
+                case "Obese":
+                    return "You are significantly above the normal weight range. It's advisable to consult with a healthcare provider.";
+                default:
+                    return "Nothing is being called";
+            }
+        }
+
+    public class BMICategory {
+        private String category;
+        private String description;
+    
+        public BMICategory(String category, String description) {
+            this.category = category;
+            this.description = description;
+        }
+    
+        public String getCategory() {
+            return category;
+        }
+    
+        public String getDescription() {
+            return description;
+        }
+    }
+
+    
 }
