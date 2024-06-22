@@ -68,13 +68,8 @@ public class ResultsController implements Initializable {
         displayLoggedInUser();
 
         learnmore.setOnMouseClicked(e -> {
-            String category = results.getText().trim();
-            String url = getURLForCategory(category);
-            if (url != null) {
-                openWebsite(url);
-            } else {
-                showAlert("Error", "No URL found for this category.");
-            }
+            BMICategory bmiCategory = calculateCategory(Double.parseDouble(calculation.getText()));
+            openWebsite(bmiCategory.getUrl());
         });
     }
 
@@ -285,25 +280,24 @@ public class ResultsController implements Initializable {
     
         if (result < 18.5) {
             category = "Underweight";
-            description = "You are below the normal weight range. It's important to eat a balanced diet.";
+            description = "Underweight individuals may negatively impact immunity, fertility, mental wellbeing, and other health aspects. To maintain health, it's crucial to consume energy-rich foods, including protein for muscle repair and vitamins and minerals for overall well-being.";
             url = "https://www.medicalnewstoday.com/articles/321612";
         } else if (result < 25.0) {
             category = "Normal weight";
-            description = "You are within the normal weight range. Keep up the good work!";
+            description = "This weight is considered as healthy and normal weight. By maintaining a healthy weight, they can lower their risk of developing serious health problems. Maintain your weight with adequate exercises and healthy foods. Keep up the good work!";
             url = "https://mana.md/what-is-a-healthy-weight/";
         } else if (result < 30.0) {
             category = "Overweight";
-            description = "You are above the normal weight range. Consider a healthy diet and regular exercise.";
+            description = "Overweight individuals have excess body fat, often a BMI over 25, which increases the risk of health issues like heart disease, diabetes, and high blood pressure. To improve health, a balanced diet, regular exercise, and consistent sleep are crucial.";
             url = "https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight";
         } else {
             category = "Obese";
-            description = "You are significantly above the normal weight range. It's advisable to consult with a healthcare provider.";
+            description = "Obesity, characterized by a BMI over 30, increases the risk of serious health issues like type 2 diabetes, heart disease, and certain cancers. To combat obesity, a healthy lifestyle involving regular physical activity, nutritious food, and stress management is crucial.";
             url = "https://www.who.int/health-topics/obesity#:~:text=Overweight%20and%20obesity%20are%20defined,and%20over%2030%20is%20obese.";
         }
     
         return new BMICategory(category, description, url);
     }
-
 
     private int determineCategoryID(double result) {
         if (result < 18.5) {
@@ -318,51 +312,58 @@ public class ResultsController implements Initializable {
     }
 
     private void loadDataFromDatabase() {
+        int userID = LoginManager.getUserID();
+    
+        String query = "SELECT * FROM bmi_calculation WHERE UserID = ? ORDER BY CalculationID DESC LIMIT 1";
         try (Connection connection = Database.DBConnect();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM bmi_calculation ORDER BY calculationID DESC LIMIT 1");
-             ResultSet resultSet = preparedStatement.executeQuery()) {
-
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+    
+            preparedStatement.setInt(1, userID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+    
             if (resultSet.next()) {
                 double height = resultSet.getDouble("height");
                 double weight = resultSet.getDouble("weight");
                 double bmi = resultSet.getDouble("bmi");
-                int categoryID = resultSet.getInt("CategoryID");
-
-                String categoryName = getCategoryName(categoryID);
-
-
-                // String description = bmiCategory(category);
-                // String url = bmiCategory(category);
-
-                Platform.runLater(() -> {
-                try { 
-                    heighttext.setText(String.valueOf(height));
-                    weighttext.setText(String.valueOf(weight));
-                    calculation.setText(String.valueOf(bmi));
-                    calculation1.setText(String.valueOf(bmi));
-                    results.setText(categoryName); 
-                    results2.setText(categoryName);
-                    
-                    // BMI Description
-                    BMICategory bmiCategory = calculateCategory(bmi);
-                    info.setText(bmiCategory.getDescription());
-
-                    //URL
-                    learnmore.setOnMouseClicked(e -> openWebsite(bmiCategory.getUrl()));
-                    
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    System.out.println("Error setting description: " + e.getMessage());
-                 }
-                });
+                
+                heighttext.setText(String.valueOf(height));
+                weighttext.setText(String.valueOf(weight));
+                calculation.setText(String.valueOf(bmi));
+                calculation1.setText(String.valueOf(bmi));
+    
+                BMICategory bmiCategory = calculateCategory(bmi);
+                String category = bmiCategory.getCategory();
+                String description = bmiCategory.getDescription();
+                String url = bmiCategory.getUrl();
+    
+                results.setText(category);
+                results2.setText(category);
+                info.setText(description);
+    
+                learnmore.setOnMouseClicked(e -> openWebsite(url));
             } else {
-                System.out.println("No data found in bmi_calculation table.");
+                System.out.println("No data found for the specified user.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    
+    private void displayLoggedInUser() {
+        int userID = LoginManager.getUserID();
+        try (Connection connection = Database.DBConnect();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT Username FROM users WHERE UserID = ?")) {
+            preparedStatement.setInt(1, userID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                String username = resultSet.getString("Username");
+                userdisplay.setText(username);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private String getCategoryName(int categoryID) {
         String categoryName = "Unknown";
@@ -384,12 +385,7 @@ public class ResultsController implements Initializable {
         return categoryName;
     }
 
-    private void displayLoggedInUser() {
-        String loggedInUser = LoginManager.getUsername();
-        if (userdisplay != null) {
-            userdisplay.setText(loggedInUser);
-        }
-    }
+
 
     @FXML
     private void handleLogout(ActionEvent event) {
@@ -410,37 +406,6 @@ public class ResultsController implements Initializable {
         }
     }
 
-        // //Method to add the category description to the results
-        // private String getCategoryDescription(String category) {
-        //     category = category.trim();
-        //     switch (category) {
-        //         case "Underweight":
-        //             return "You are below the normal weight range. It's important to eat a balanced diet.";
-        //         case "Normal":
-        //             return "You are within the normal weight range. Keep up the good work!";
-        //         case "Overweight":
-        //             return "You are above the normal weight range. Consider a healthy diet and regular exercise.";
-        //         case "Obese":
-        //             return "You are significantly above the normal weight range. It's advisable to consult with a healthcare provider.";
-        //         default:
-        //             return "Nothing is being called";
-        //     }
-        // }
-
-        private String getURLForCategory(String category) {
-            switch (category) {
-                case "Underweight":
-                    return "https://www.medicalnewstoday.com/articles/321612";
-                case "Normal":
-                    return "https://mana.md/what-is-a-healthy-weight/";
-                case "Overweight":
-                    return "https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight";
-                case "Obese":
-                    return "https://www.who.int/health-topics/obesity#:~:text=Overweight%20and%20obesity%20are%20defined,and%20over%2030%20is%20obese.";
-                default:
-                    return null;
-            }
-        }
 
     public class BMICategory {
         private String category;
