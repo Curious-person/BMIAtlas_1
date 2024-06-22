@@ -15,6 +15,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import java.text.SimpleDateFormat;
 import javafx.stage.Stage;
 import models.Database;
 import models.LoginManager;
@@ -53,7 +54,7 @@ public class HistoryController implements Initializable {
     private Stage stage;
 
     @FXML
-    private Button deleteButton, handleLogout;
+    private Button deleteButton, handleLogout, refreshButton;
 
     @FXML
     private ImageView back;
@@ -150,6 +151,12 @@ public class HistoryController implements Initializable {
         alert.showAndWait();
     }
 
+    @FXML
+    private void handleRefreshButton(ActionEvent event) {
+        refreshData();
+        System.out.println("Data refreshed");
+    }
+
     public void loadDataFromDatabase() {
         ObservableList<ObservableList<String>> data = FXCollections.observableArrayList();
         int currentUserID = LoginManager.getUserID();
@@ -196,6 +203,14 @@ public class HistoryController implements Initializable {
         dateAddedCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().get(4)));
     }
 
+    //clear existing data in the table view and line chart
+    private void refreshData() {
+        
+        tableView.getItems().clear();
+        bmiSeries.getData().clear();
+        loadDataFromDatabase();
+    }
+
     private void displayLoggedInUser() {
         String loggedInUser = LoginManager.getUsername();
         if (userdisplay != null) {
@@ -231,5 +246,6 @@ public class HistoryController implements Initializable {
     private void addDataToLineChart(String date, Double bmiValue) {
         bmiSeries.getData().add(new XYChart.Data<>(date, bmiValue));
     }
+
 
 }
