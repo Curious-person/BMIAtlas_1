@@ -15,6 +15,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import java.text.SimpleDateFormat;
 import javafx.stage.Stage;
 import models.Database;
 import models.LoginManager;
@@ -245,5 +246,6 @@ public class HistoryController implements Initializable {
     private void addDataToLineChart(String date, Double bmiValue) {
         bmiSeries.getData().add(new XYChart.Data<>(date, bmiValue));
     }
+
 
 }

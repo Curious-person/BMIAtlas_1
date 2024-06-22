@@ -96,7 +96,7 @@
             <String fx:value="default-color0" />
          </styleClass>
       </LineChart>
-      <Label layoutX="1245.0" layoutY="823.0" text="Text about weight trends" textAlignment="CENTER" textFill="#4d6698">
+      <Label layoutX="1246.0" layoutY="803.0" prefHeight="111.0" prefWidth="624.0" text="The BMI trend is calculated using your BMI score placed recently in your history. Quickly compare and celebrate your feat by viewing your records!" textAlignment="JUSTIFY" textFill="#4d6698" wrapText="true">
          <font>
             <Font name="Arial Italic" size="21.0" />
          </font>

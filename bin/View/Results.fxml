@@ -86,7 +86,7 @@
             <String fx:value="translucent" />
          </styleClass>
       </Button>
-      <Label fx:id="info" layoutX="1042.0" layoutY="604.0" maxWidth="622.0" minWidth="100" prefHeight="178.0" prefWidth="622.0" text="Info" textFill="#4d6698" wrapText="true">
+      <Label fx:id="info" layoutX="1042.0" layoutY="604.0" maxWidth="807.0" minWidth="100" prefHeight="222.0" prefWidth="807.0" text="Info" textFill="#4d6698" wrapText="true">
          <font>
             <Font name="Arial" size="28.0" />
          </font>

@@ -305,12 +305,12 @@ public class ResultsController implements Initializable {
     }
 
 
-    private int determineCategoryID(double bmi) {
-        if (bmi < 18.5) {
+    private int determineCategoryID(double result) {
+        if (result < 18.5) {
             return 1; // Underweight
-        } else if (bmi < 25.0) {
+        } else if (result < 25.0) {
             return 2; // Normal weight
-        } else if (bmi < 30.0) {
+        } else if (result < 30.0) {
             return 3; // Overweight
         } else {
             return 4; // Obesity
@@ -328,9 +328,11 @@ public class ResultsController implements Initializable {
                 double bmi = resultSet.getDouble("bmi");
                 int categoryID = resultSet.getInt("CategoryID");
 
-                String category = getCategoryName(categoryID);
-                String description = getCategoryDescription(category);
-                String url = getURLForCategory(category);
+                String categoryName = getCategoryName(categoryID);
+
+
+                // String description = bmiCategory(category);
+                // String url = bmiCategory(category);
 
                 Platform.runLater(() -> {
                 try { 
@@ -338,11 +340,15 @@ public class ResultsController implements Initializable {
                     weighttext.setText(String.valueOf(weight));
                     calculation.setText(String.valueOf(bmi));
                     calculation1.setText(String.valueOf(bmi));
-                    results.setText(category);                 
-                    info.setText(description);
-                    info.setWrapText(true); 
-                    results2.setText(category);
-                    learnmore.setOnMouseClicked(e -> openWebsite(url));
+                    results.setText(categoryName); 
+                    results2.setText(categoryName);
+                    
+                    // BMI Description
+                    BMICategory bmiCategory = calculateCategory(bmi);
+                    info.setText(bmiCategory.getDescription());
+
+                    //URL
+                    learnmore.setOnMouseClicked(e -> openWebsite(bmiCategory.getUrl()));
                     
 
                 } catch (Exception e) {
@@ -356,6 +362,26 @@ public class ResultsController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private String getCategoryName(int categoryID) {
+        String categoryName = "Unknown";
+        String query = "SELECT CategoryName FROM bmi_category WHERE CategoryID = ?";
+
+        try (Connection connection = Database.DBConnect();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setInt(1, categoryID);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    categoryName = resultSet.getString("CategoryName");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return categoryName;
     }
 
     private void displayLoggedInUser() {
@@ -383,44 +409,23 @@ public class ResultsController implements Initializable {
             e.printStackTrace();
         }
     }
-    
 
-    private String getCategoryName(int categoryID) {
-        String categoryName = "Unknown";
-        String query = "SELECT CategoryName FROM bmi_category WHERE CategoryID = ?";
-
-        try (Connection connection = Database.DBConnect();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-
-            preparedStatement.setInt(1, categoryID);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    categoryName = resultSet.getString("CategoryName");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return categoryName;
-    }
-
-        //Method to add the category description to the results
-        private String getCategoryDescription(String category) {
-            category = category.trim();
-            switch (category) {
-                case "Underweight":
-                    return "You are below the normal weight range. It's important to eat a balanced diet.";
-                case "Normal":
-                    return "You are within the normal weight range. Keep up the good work!";
-                case "Overweight":
-                    return "You are above the normal weight range. Consider a healthy diet and regular exercise.";
-                case "Obese":
-                    return "You are significantly above the normal weight range. It's advisable to consult with a healthcare provider.";
-                default:
-                    return "Nothing is being called";
-            }
-        }
+        // //Method to add the category description to the results
+        // private String getCategoryDescription(String category) {
+        //     category = category.trim();
+        //     switch (category) {
+        //         case "Underweight":
+        //             return "You are below the normal weight range. It's important to eat a balanced diet.";
+        //         case "Normal":
+        //             return "You are within the normal weight range. Keep up the good work!";
+        //         case "Overweight":
+        //             return "You are above the normal weight range. Consider a healthy diet and regular exercise.";
+        //         case "Obese":
+        //             return "You are significantly above the normal weight range. It's advisable to consult with a healthcare provider.";
+        //         default:
+        //             return "Nothing is being called";
+        //     }
+        // }
 
         private String getURLForCategory(String category) {
             switch (category) {
