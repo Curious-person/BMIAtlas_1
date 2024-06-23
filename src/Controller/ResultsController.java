@@ -350,18 +350,22 @@ public class ResultsController implements Initializable {
     }
     
     private void displayLoggedInUser() {
-        int userID = LoginManager.getUserID();
-        try (Connection connection = Database.DBConnect();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT Username FROM users WHERE UserID = ?")) {
-            preparedStatement.setInt(1, userID);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                String username = resultSet.getString("Username");
-                userdisplay.setText(username);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        String loggedInUser = LoginManager.getUsername();
+        if (userdisplay != null) {
+            userdisplay.setText("" + loggedInUser);
         }
+        // int userID = LoginManager.getUserID();
+        // try (Connection connection = Database.DBConnect();
+        //      PreparedStatement preparedStatement = connection.prepareStatement("SELECT Username FROM users WHERE UserID = ?")) {
+        //     preparedStatement.setInt(1, userID);
+        //     ResultSet resultSet = preparedStatement.executeQuery();
+        //     if (resultSet.next()) {
+        //         String username = resultSet.getString("Username");
+        //         userdisplay.setText(username);
+        //     }
+        // } catch (SQLException e) {
+        //     e.printStackTrace();
+        // }
     }
 
 
