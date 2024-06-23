@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="anchorpane" stylesheets="@../Resources/Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HistoryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="anchorpane" stylesheets="@../Resources/Style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HistoryController">
    <children>
       <ImageView fitHeight="1080.0" fitWidth="1920.0">
          <image>
@@ -44,7 +44,6 @@
       </Label>
       <TableView fx:id="tableView" editable="true" layoutX="129.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="735.0" prefWidth="1087.0" stylesheets="@../Resources/Style.css">
          <columns>
-            <TableColumn prefWidth="330.0" styleClass="column1" text="▲ ▼" />
             <TableColumn fx:id="heightCol" editable="true" prefWidth="330.0" styleClass="column-header" text="HEIGHT" />
             <TableColumn fx:id="weightCol" editable="true" prefWidth="330.0" styleClass="column-header" text="WEIGHT" />
             <TableColumn fx:id="bmiResultCol" prefWidth="410.0" styleClass="column-header" text="BMI" />
@@ -96,7 +95,7 @@
             <String fx:value="default-color0" />
          </styleClass>
       </LineChart>
-      <Label layoutX="1246.0" layoutY="803.0" prefHeight="111.0" prefWidth="624.0" text="The BMI trend is calculated using your BMI score placed recently in your history. Quickly compare and celebrate your feat by viewing your records!" textAlignment="JUSTIFY" textFill="#4d6698" wrapText="true">
+      <Label layoutX="1246.0" layoutY="805.0" prefHeight="111.0" prefWidth="542.0" text="The BMI trend is calculated using your BMI score placed recently in your history. Quickly compare and celebrate your feat by viewing your records!" textAlignment="JUSTIFY" textFill="#4d6698" wrapText="true">
          <font>
             <Font name="Arial Italic" size="21.0" />
          </font>
@@ -123,7 +122,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="refreshbutton" layoutX="543.0" layoutY="953.0" mnemonicParsing="false" onAction="#handleRefreshButton" prefHeight="60.0" prefWidth="323.0" styleClass="addtohistory" text="Refresh">
+      <Button fx:id="refreshbutton" layoutX="543.0" layoutY="953.0" mnemonicParsing="false" onAction="#handleRefreshButton" prefHeight="60.0" prefWidth="323.0" styleClass="editbutton" text="Refresh">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
