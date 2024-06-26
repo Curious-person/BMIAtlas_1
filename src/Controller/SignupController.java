@@ -17,6 +17,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -100,6 +102,11 @@ public class SignupController implements Initializable {
             errorMessageLabel.setText("All fields are required");
             errorMessageLabel.setVisible(true);
             return;
+        }
+
+        if (!email.contains("@") || (!email.endsWith(".com"))) {
+        showAlert1("Invalid email format. Please enter a valid email address.", AlertType.ERROR);
+        return;
         }
 
         try (Connection connection = Database.DBConnect()) {
@@ -203,5 +210,13 @@ public class SignupController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
+    }
+
+    private void showAlert1(String message, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle("Registration Failed");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
