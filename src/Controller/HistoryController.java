@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
@@ -103,8 +104,22 @@ public class HistoryController implements Initializable {
             tableView.getItems().remove(selectedItem);
             deleteFromDatabase(selectedItem);
             showAlert2("Success", "Data deleted from history");
+            refreshData();
         } else {
             showAlert("Error", "Please select a row.");
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/History.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(scene);
+            currentStage.show();
+        } catch (IOException e) {
+            showAlert("Error", "Failed to load History.fxml");
+            e.printStackTrace();
         }
     }
 
@@ -136,7 +151,6 @@ public class HistoryController implements Initializable {
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(getClass().getResource("/Resources/Style.css").toExternalForm());
         alert.showAndWait();
-        alert.showAndWait();
     }
 
     private void showAlert2(String title, String message) {
@@ -148,13 +162,6 @@ public class HistoryController implements Initializable {
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(getClass().getResource("/Resources/Style.css").toExternalForm());
         alert.showAndWait();
-        alert.showAndWait();
-    }
-
-    @FXML
-    private void handleRefreshButton(ActionEvent event) {
-        refreshData();
-        System.out.println("Data refreshed");
     }
 
     public void loadDataFromDatabase() {
@@ -246,6 +253,5 @@ public class HistoryController implements Initializable {
     private void addDataToLineChart(String date, Double bmiValue) {
         bmiSeries.getData().add(new XYChart.Data<>(date, bmiValue));
     }
-
 
 }

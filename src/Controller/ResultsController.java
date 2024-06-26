@@ -151,7 +151,6 @@ public class ResultsController implements Initializable {
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(getClass().getResource("/Resources/Style.css").toExternalForm());
         alert.showAndWait();
-        alert.showAndWait();
     }
 
     private void showAlert2(String title, String message) {
@@ -162,7 +161,6 @@ public class ResultsController implements Initializable {
 
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(getClass().getResource("/Resources/Style.css").toExternalForm());
-        alert.showAndWait();
         alert.showAndWait();
     }
 
